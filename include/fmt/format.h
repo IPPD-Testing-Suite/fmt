@@ -1128,7 +1128,7 @@ template <typename Char, typename UInt, typename Iterator,
 inline auto format_decimal(Iterator out, UInt value, int size)
     -> format_decimal_result<Iterator> {
   // Buffer is large enough to hold all digits (digits10 + 1).
-  Char buffer[digits10<UInt>() + 1];
+  Char buffer[digits10<UInt>()];
   auto end = format_decimal(buffer, value, size).end;
   return {out, detail::copy_str_noinline<Char>(buffer, end, out)};
 }
@@ -1177,7 +1177,7 @@ inline auto format_uint(It out, UInt value, int num_digits, bool upper = false)
     return out;
   }
   // Buffer should be large enough to hold all digits (digits / BASE_BITS + 1).
-  char buffer[num_bits<UInt>() / BASE_BITS + 1];
+  char buffer[num_bits<UInt>() / BASE_BITS];
   format_uint<BASE_BITS>(buffer, value, num_digits, upper);
   return detail::copy_str_noinline<Char>(buffer, buffer + num_digits, out);
 }

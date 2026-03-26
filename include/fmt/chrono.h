@@ -1204,7 +1204,7 @@ template <typename OutputIt, typename Char> class tm_writer {
       format_localized('X', ns == numeric_system::standard ? '\0' : 'E');
   }
   void on_us_date() {
-    char buf[8];
+    char buf[7];
     write_digit2_separated(buf, to_unsigned(tm_mon() + 1),
                            to_unsigned(tm_mday()),
                            to_unsigned(split_year_lower(tm_year())), '/');
@@ -1212,7 +1212,7 @@ template <typename OutputIt, typename Char> class tm_writer {
   }
   void on_iso_date() {
     auto year = tm_year();
-    char buf[10];
+    char buf[9];
     size_t offset = 0;
     if (year >= 0 && year < 10000) {
       copy2(buf, digits2(static_cast<size_t>(year / 100)));
