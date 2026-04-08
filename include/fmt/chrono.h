@@ -1351,7 +1351,7 @@ template <typename OutputIt, typename Char> class tm_writer {
     write2(tm_min());
   }
   void on_iso_time() {
-    char buf[8];
+    char buf[7];
     write_digit2_separated(buf, to_unsigned(tm_hour()), to_unsigned(tm_min()),
                            to_unsigned(tm_sec()), ':');
     out_ = copy_str<Char>(std::begin(buf), std::end(buf), out_);
